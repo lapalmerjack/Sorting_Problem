@@ -7,6 +7,7 @@ import java.util.HashMap;
 public class Main {
 
     public static void main(String[] args) {
+        // for testing
         String[] array1 = new String[]{"Apple"};
         String[] array2 = new String[]{"Apple", "happy"};
         String[] array3 = new String[]{"Apple", "beer", "crow", "foot"};
@@ -20,10 +21,17 @@ public class Main {
         String[] array11 = new String[]{"Hungry", "pattern"};
         String[] array12 = new String[]{"Apple"};
         String[] array13 = new String[]{"Hungry"};
-        String[] array14 = new String[]{"*"};
+
+        /*
+       [[Apple], [Apple], [Apple, beer, crow, foot], [Apple, beer, crow, foot], [Apple, happy], [Apple, shot],
+        [Apple, shot], [Apple, shot, crow], [Hungry], [Hungry, happy],
+       [Hungry, pattern], [Hungry, pattern], [Hungry, pattern]]
+
+         */
 
 
-        String[][] myArrays = {array2, array1, array4, array5, array6, array7,array8,array9, array10, array11, array12, array3, array13, array14};
+
+        String[][] myArrays = {array2, array1, array4, array5, array6, array7,array8,array9, array10, array11, array12, array3, array13};
 
 
         sortArray(myArrays);
@@ -80,22 +88,12 @@ public class Main {
     }
 
     public static boolean findArrayMatch(String[] temp, String[] firstArray) {
-        if(Arrays.equals(temp, firstArray)) {
-            return true;
-        } else {
-            return false;
-        }
+        return Arrays.equals(temp, firstArray);
 
     }
 
     public static int findMinLength(String [] firstArray, String [] secondArray) {
-        int minLength;
-        if(firstArray.length < secondArray.length) {
-            minLength = firstArray.length;
-        } else {
-            minLength = secondArray.length;
-        }
-        return minLength;
+        return Math.min(firstArray.length, secondArray.length);
     }
 
 
