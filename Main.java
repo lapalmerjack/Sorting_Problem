@@ -34,7 +34,7 @@ public class Main {
         String[][] myArrays = {array2, array1, array4, array5, array6, array7,array8,array9, array10, array11, array12, array3, array13};
 
 
-        sortArray(myArrays);
+        sortArrays(myArrays);
         System.out.println(Arrays.deepToString(myArrays));
     }
 
@@ -74,7 +74,7 @@ public class Main {
         return arrayReturn;
     }
 
-    public static void sortArray(String [][] myArrays) {
+    public static void sortArrays(String [][] myArrays) {
         String[] temp;
         for (int i = 0; i < myArrays.length; i++) {
             for (int j = i + 1; j < myArrays.length; j++) {
