@@ -32,10 +32,11 @@ public class Main {
 
 
         String[][] myArrays = {array2, array1, array4, array5, array6, array7,array8,array9, array10, array11, array12, array3, array13};
+        System.out.println("Array pre-sort:\t\t" + Arrays.deepToString(myArrays));
 
 
         sortArrays(myArrays);
-        System.out.println(Arrays.deepToString(myArrays));
+        System.out.println("Array post-sort:\t" + Arrays.deepToString(myArrays));
     }
 
     public static String [] returnMinLengthArray(String [] firstArray, String [] secondArray) {
