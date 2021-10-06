@@ -3,6 +3,9 @@ package com.company;
 import java.sql.Array;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class Main {
 
@@ -32,11 +35,46 @@ public class Main {
 
 
         String[][] myArrays = {array2, array1, array4, array5, array6, array7,array8,array9, array10, array11, array12, array3, array13};
+        String[][] firstClone = myArrays.clone();
+        String[][] secondClone = myArrays.clone();
+
+
         System.out.println("Array pre-sort:\t\t" + Arrays.deepToString(myArrays));
-
-
         sortArrays(myArrays);
-        System.out.println("Array post-sort:\t" + Arrays.deepToString(myArrays));
+        System.out.println("Array post-sort:\t" + Arrays.deepToString(myArrays) + "\r\n\r\n");
+
+        System.out.println("-----dave's arrays-----\r\n\r\nComparing on array content only (alphabetic)");
+        System.out.println("pre-sort:\t\t" + Arrays.deepToString(firstClone));
+        Arrays.sort(firstClone, Main::compareArraysOnContentOnly);
+        System.out.println("post-sort:\t" + Arrays.deepToString(firstClone) + "\r\n\r\n");
+        // check out the java.util.Comparator interface. Abstractions for the win! :)
+        // lets you focus on the meat of the problem (the *what*) without needing to worry about juggling the array elements around (the *how*)
+        // also, descriptive commit messages are your friend! :)
+
+        System.out.println("Comparing on array length first and then content");
+        System.out.println("pre-sort:\t\t" + Arrays.deepToString(secondClone));
+        // or with the stream API... same idea, different tool
+        // Note that our original array 'secondClone' didn't change
+        List<String[]> list = Arrays.stream(secondClone)
+                .sorted(Main::compareArraysOnLengthAndContent)
+                .collect(Collectors.toList());
+        System.out.println("post-sort:\t" + Arrays.deepToString(list.toArray()));
+        System.out.println("unmodified source array:\t" + Arrays.deepToString(secondClone));
+    }
+
+    public static int compareArraysOnContentOnly(String[] a1, String[] a2) {
+        String left = String.join("", a1);
+        String right = String.join("", a2);
+        return left.compareTo(right);
+    }
+
+    public static int compareArraysOnLengthAndContent(String[] a1, String[] a2) {
+        if (a1.length != a2.length) {
+            return a1.length - a2.length;
+        }
+        String left = String.join("", a1);
+        String right = String.join("", a2);
+        return left.compareTo(right);
     }
 
     public static String [] returnMinLengthArray(String [] firstArray, String [] secondArray) {
@@ -46,6 +84,8 @@ public class Main {
             return firstArray;
         }
     }
+
+
 
     public static String [] compareTwoArrays(String [] firstArray, String [] secondArray) {
 
